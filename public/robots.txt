@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ihr-domain.de/sitemap.xml
+
+# Indexierung fördern
+Crawl-delay: 0
+
+# Wichtige Seiten
+Allow: /#services
+Allow: /#about
+Allow: /#portfolio
+Allow: /#faq
+Allow: /#contact
