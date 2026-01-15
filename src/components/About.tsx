@@ -66,20 +66,11 @@ const About = () => {
 
           <div className="relative">
             <div className="aspect-square rounded-2xl bg-gradient-to-br from-[#d4af7a] to-[#b8935f] p-1 overflow-hidden">
-              <div className="w-full h-full bg-white rounded-xl flex items-center justify-center relative">
-                <div className="absolute inset-0 opacity-5">
-                  <div className="grid grid-cols-3 gap-4 p-8">
-                    {[...Array(9)].map((_, i) => (
-                      <div key={i} className="aspect-square bg-gray-900 rounded-lg"></div>
-                    ))}
-                  </div>
-                </div>
-                <div className="text-center p-8 z-10">
-                  <Users className="w-24 h-24 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-900 font-normal">Unser Team im Einsatz</p>
-                  <p className="text-sm text-gray-600 mt-2">Erfahrene Fachkräfte für Ihr Projekt</p>
-                </div>
-              </div>
+              <img
+                src="https://i.imgur.com/K5FzSf5.jpeg"
+                alt="Nordic Vision Bau Team im Einsatz"
+                className="w-full h-full object-cover rounded-xl"
+              />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-[#d4af7a] text-white p-6 rounded-xl shadow-xl">
               <div className="text-3xl font-bold">500+</div>
