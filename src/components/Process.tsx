@@ -12,7 +12,7 @@ const Process = () => {
     {
       number: 2,
       icon: Wrench,
-      title: 'Schadensanierung',
+      title: 'Sofortmaßnahmen',
       description: 'Bei Notfällen beginnen wir sofort mit der Erstversorgung. Wir führen Trocknungsmaßnahmen durch, entfernen beschädigte Materialien und sorgen für Sicherheit.',
       duration: '1-2 Tage',
     },
