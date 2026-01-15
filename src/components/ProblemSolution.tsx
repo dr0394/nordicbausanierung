@@ -63,7 +63,7 @@ const ProblemSolution = () => {
                 <CheckCircle className="w-6 h-6 text-[#d4af7a] flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="font-normal text-gray-900 mb-1">Spürbare Entlastung</h3>
-                  <p className="text-gray-600">Volle Kontrolle ohne Baustellen-Chaos – damit Sie sich auf Ihr Geschäft konzentrieren können</p>
+                  <p className="text-gray-600">Volle Kontrolle ohne Baustellen-Chaos, damit Sie sich auf Ihr Geschäft konzentrieren können</p>
                 </div>
               </div>
             </div>
