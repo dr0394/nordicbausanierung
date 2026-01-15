@@ -58,8 +58,8 @@ const Contact = ({ onContactClick }: { onContactClick: () => void }) => {
                 </div>
                 <div>
                   <h4 className="font-normal text-white mb-1" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.6)' }}>E-Mail</h4>
-                  <a href="mailto:F.b.1985@icloud.com" className="text-[#d4af7a] hover:text-[#b8935f] font-normal" style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.4)' }}>
-                    F.b.1985@icloud.com
+                  <a href="mailto:info@nordic-bau.de" className="text-[#d4af7a] hover:text-[#b8935f] font-normal" style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.4)' }}>
+                    info@nordic-bau.de
                   </a>
                 </div>
               </div>
