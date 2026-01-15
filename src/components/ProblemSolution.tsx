@@ -16,7 +16,7 @@ const ProblemSolution = () => {
               <div className="flex items-start space-x-3">
                 <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
                 <div>
-                  <h3 className="font-normal text-gray-900 mb-1">Baustellen-Chaos,</h3>
+                  <h3 className="font-normal text-gray-900 mb-1">Baustellen-Chaos</h3>
                   <p className="text-gray-600">Komplexe Sanierung nach Brand- oder Wasserschäden ohne klare Koordination</p>
                 </div>
               </div>
