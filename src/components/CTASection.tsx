@@ -38,11 +38,11 @@ const CTASection = ({
               <span>{primaryButtonText}</span>
             </button>
             <a
-              href="tel:+491712345678"
+              href="tel:+491704371672"
               className="bg-accent hover:bg-accent-dark text-white font-semibold px-10 py-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
             >
               <Phone className="w-5 h-5" />
-              <span>+49 171 2345678</span>
+              <span>+49 170 4371672</span>
             </a>
           </div>
         </div>

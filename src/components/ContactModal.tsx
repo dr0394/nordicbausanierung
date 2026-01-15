@@ -57,7 +57,7 @@ Nachricht: ${formData.message || 'Keine zusätzliche Nachricht'}
 
     if (formData.contactMethod === 'whatsapp') {
       const whatsappMessage = encodeURIComponent(message);
-      window.open(`https://wa.me/491712345678?text=${whatsappMessage}`, '_blank');
+      window.open(`https://wa.me/491704371672?text=${whatsappMessage}`, '_blank');
     } else if (formData.contactMethod === 'email') {
       const emailSubject = encodeURIComponent('Neue Anfrage über Website');
       const emailBody = encodeURIComponent(message);

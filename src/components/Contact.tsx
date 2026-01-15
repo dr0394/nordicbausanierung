@@ -45,8 +45,8 @@ const Contact = ({ onContactClick }: { onContactClick: () => void }) => {
                 </div>
                 <div>
                   <h4 className="font-normal text-white mb-1" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.6)' }}>Telefon</h4>
-                  <a href="tel:+4917632986532" className="text-[#d4af7a] hover:text-[#b8935f] font-normal text-lg" style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.4)' }}>
-                    +49 176 32986532
+                  <a href="tel:+491704371672" className="text-[#d4af7a] hover:text-[#b8935f] font-normal text-lg" style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.4)' }}>
+                    +49 170 4371672
                   </a>
                   <p className="text-sm text-white/80 mt-1" style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.4)' }}>24/7 Notfallservice verfügbar</p>
                 </div>
@@ -113,7 +113,7 @@ const Contact = ({ onContactClick }: { onContactClick: () => void }) => {
             Kontaktieren Sie uns noch heute für ein unverbindliches Erstgespräch und ein kostenloses Angebot.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:+4917632986532" className="px-8 py-4 bg-[#d4af7a] hover:bg-[#b8935f] text-white font-normal transition-all duration-300 flex items-center justify-center space-x-2">
+            <a href="tel:+491704371672" className="px-8 py-4 bg-[#d4af7a] hover:bg-[#b8935f] text-white font-normal transition-all duration-300 flex items-center justify-center space-x-2">
               <Phone className="w-5 h-5" />
               <span>Jetzt anrufen</span>
             </a>

@@ -40,8 +40,8 @@ const Footer = () => {
                 </li>
                 <li className="flex items-center space-x-3 group">
                   <Phone className="w-5 h-5 flex-shrink-0 text-[#d4af7a]" />
-                  <a href="tel:+4917632986532" className="text-gray-600 hover:text-gray-900 transition-colors text-[15px]">
-                    +49 176 32986532
+                  <a href="tel:+491704371672" className="text-gray-600 hover:text-gray-900 transition-colors text-[15px]">
+                    +49 170 4371672
                   </a>
                 </li>
                 <li className="flex items-center space-x-3 group">
@@ -147,7 +147,7 @@ const Footer = () => {
 
               <div className="border-l-4 border-[#d4af7a] pl-5 py-1">
                 <h3 className="font-semibold text-gray-900 mb-3 text-lg tracking-wide">Kontakt</h3>
-                <p className="leading-relaxed">Telefon: +49 176 32986532</p>
+                <p className="leading-relaxed">Telefon: +49 170 4371672</p>
                 <p className="leading-relaxed">E-Mail: F.b.1985@icloud.com</p>
               </div>
 
@@ -266,7 +266,7 @@ const Footer = () => {
                     Waldweg 85<br />
                     22393 Hamburg<br />
                     E-Mail: F.b.1985@icloud.com<br />
-                    Telefon: +49 176 32986532
+                    Telefon: +49 170 4371672
                   </p>
                 </div>
               </div>

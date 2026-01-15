@@ -106,12 +106,12 @@ const Navigation = ({ onContactClick }: { onContactClick: () => void }) => {
             ))}
             <div className="pt-4 space-y-3">
               <a
-                href="tel:+4917632986532"
+                href="tel:+491704371672"
                 className="flex items-center justify-center space-x-2 px-4 py-3 bg-[#2c3e50]/50 rounded-lg text-white border border-white/20"
                 style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.4)' }}
               >
                 <Phone className="w-4 h-4" />
-                <span className="font-normal">+49 176 32986532</span>
+                <span className="font-normal">+49 170 4371672</span>
               </a>
               <button
                 onClick={onContactClick}
