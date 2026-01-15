@@ -9,9 +9,8 @@ interface ContactModalProps {
 const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    damageType: '',
-    affectedRooms: '',
-    urgency: '',
+    serviceType: '',
+    areaSize: '',
     address: '',
     name: '',
     phone: '',
@@ -24,7 +23,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
   if (!isOpen) return null;
 
   const handleNext = () => {
-    if (step < 5) setStep(step + 1);
+    if (step < 4) setStep(step + 1);
   };
 
   const handleBack = () => {
@@ -40,9 +39,8 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
     const message = `
 Neue Anfrage über Website:
 
-Schadenstyp: ${formData.damageType}
-Betroffene Räume: ${formData.affectedRooms}
-Dringlichkeit: ${formData.urgency}
+Dienstleistung: ${formData.serviceType}
+Flächengröße: ${formData.areaSize}
 
 Adresse: ${formData.address}
 
@@ -67,9 +65,8 @@ Nachricht: ${formData.message || 'Keine zusätzliche Nachricht'}
     onClose();
     setStep(1);
     setFormData({
-      damageType: '',
-      affectedRooms: '',
-      urgency: '',
+      serviceType: '',
+      areaSize: '',
       address: '',
       name: '',
       phone: '',
@@ -80,20 +77,13 @@ Nachricht: ${formData.message || 'Keine zusätzliche Nachricht'}
     });
   };
 
-  const damageTypes = [
-    { value: 'brand', label: 'Brandschaden' },
-    { value: 'wasser', label: 'Wasserschaden' },
-    { value: 'schimmel', label: 'Schimmel' },
-    { value: 'komplett', label: 'Komplettsanierung' },
-    { value: 'energie', label: 'Energetische Sanierung' },
+  const serviceTypes = [
+    { value: 'brand-wasser', label: 'Brand & Wasserschaden' },
+    { value: 'schimmel', label: 'Schimmelsanierung' },
+    { value: 'kernsanierung', label: 'Kernsanierung' },
+    { value: 'fassade', label: 'Fassadensanierung' },
+    { value: 'bad', label: 'Badsanierung' },
     { value: 'sonstiges', label: 'Sonstiges' },
-  ];
-
-  const urgencyLevels = [
-    { value: 'notfall', label: 'Notfall (sofort)', color: 'bg-red-500' },
-    { value: 'dringend', label: 'Dringend (1-3 Tage)', color: 'bg-orange-500' },
-    { value: 'normal', label: 'Normal (1-2 Wochen)', color: 'bg-yellow-500' },
-    { value: 'planung', label: 'In Planung', color: 'bg-green-500' },
   ];
 
   return (
@@ -102,7 +92,7 @@ Nachricht: ${formData.message || 'Keine zusätzliche Nachricht'}
         <div className="sticky top-0 bg-white border-b border-gray-200 p-4 sm:p-6 flex items-center justify-between">
           <div>
             <h2 className="text-lg sm:text-2xl font-normal text-gray-900" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.08)' }}>Anfrage stellen</h2>
-            <p className="text-xs sm:text-sm text-gray-600">Schritt {step} von 5</p>
+            <p className="text-xs sm:text-sm text-gray-600">Schritt {step} von 4</p>
           </div>
           <button
             onClick={onClose}
@@ -115,21 +105,21 @@ Nachricht: ${formData.message || 'Keine zusätzliche Nachricht'}
         <div className="w-full bg-gray-200 h-2">
           <div
             className="bg-[#d4af7a] h-full transition-all duration-300"
-            style={{ width: `${(step / 5) * 100}%` }}
+            style={{ width: `${(step / 4) * 100}%` }}
           ></div>
         </div>
 
         <div className="p-4 sm:p-6">
           {step === 1 && (
             <div>
-              <h3 className="text-lg sm:text-xl font-normal text-gray-900 mb-4 sm:mb-6">Welche Art von Schaden haben Sie?</h3>
+              <h3 className="text-lg sm:text-xl font-normal text-gray-900 mb-4 sm:mb-6">Welche Dienstleistung benötigen Sie?</h3>
               <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
-                {damageTypes.map((type) => (
+                {serviceTypes.map((type) => (
                   <button
                     key={type.value}
-                    onClick={() => setFormData({ ...formData, damageType: type.value })}
+                    onClick={() => setFormData({ ...formData, serviceType: type.value })}
                     className={`p-4 sm:p-5 rounded-lg border transition-all text-left ${
-                      formData.damageType === type.value
+                      formData.serviceType === type.value
                         ? 'border-[#d4af7a] bg-[#d4af7a]/5 shadow-md'
                         : 'border-gray-200 hover:border-[#d4af7a] hover:shadow-sm'
                     }`}
@@ -143,41 +133,19 @@ Nachricht: ${formData.message || 'Keine zusätzliche Nachricht'}
 
           {step === 2 && (
             <div>
-              <h3 className="text-lg sm:text-xl font-normal text-gray-900 mb-4 sm:mb-6">Wie viele Räume sind betroffen?</h3>
+              <h3 className="text-lg sm:text-xl font-normal text-gray-900 mb-4 sm:mb-6">Um welche Flächengröße handelt es sich?</h3>
               <input
                 type="text"
-                value={formData.affectedRooms}
-                onChange={(e) => setFormData({ ...formData, affectedRooms: e.target.value })}
-                placeholder="z.B. 2 Zimmer, Badezimmer, Küche"
+                value={formData.areaSize}
+                onChange={(e) => setFormData({ ...formData, areaSize: e.target.value })}
+                placeholder="z.B. 50 m², 120 m², 3 Zimmer"
                 className="w-full px-5 py-4 border border-gray-200 rounded-lg focus:border-[#d4af7a] focus:shadow-md focus:outline-none transition-all"
               />
-              <p className="text-sm text-gray-500 mt-3">Bitte beschreiben Sie kurz, welche Bereiche betroffen sind.</p>
+              <p className="text-sm text-gray-500 mt-3">Bitte geben Sie die ungefähre Fläche oder Anzahl der Räume an.</p>
             </div>
           )}
 
           {step === 3 && (
-            <div>
-              <h3 className="text-lg sm:text-xl font-normal text-gray-900 mb-4 sm:mb-6">Wie dringend ist die Sanierung?</h3>
-              <div className="space-y-3">
-                {urgencyLevels.map((level) => (
-                  <button
-                    key={level.value}
-                    onClick={() => setFormData({ ...formData, urgency: level.value })}
-                    className={`w-full p-5 rounded-lg border transition-all flex items-center space-x-4 ${
-                      formData.urgency === level.value
-                        ? 'border-[#d4af7a] bg-[#d4af7a]/5 shadow-md'
-                        : 'border-gray-200 hover:border-[#d4af7a] hover:shadow-sm'
-                    }`}
-                  >
-                    <div className={`w-3 h-3 rounded-full ${level.color}`}></div>
-                    <div className="font-normal text-gray-900 tracking-wide">{level.label}</div>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {step === 4 && (
             <div className="space-y-4 sm:space-y-5">
               <h3 className="text-lg sm:text-xl font-normal text-gray-900 mb-4 sm:mb-6">Wo befindet sich das Objekt?</h3>
               <input
@@ -197,7 +165,7 @@ Nachricht: ${formData.message || 'Keine zusätzliche Nachricht'}
             </div>
           )}
 
-          {step === 5 && (
+          {step === 4 && (
             <div className="space-y-4 sm:space-y-5">
               <h3 className="text-lg sm:text-xl font-normal text-gray-900 mb-4 sm:mb-6">Wie können wir Sie erreichen?</h3>
               <input
@@ -292,20 +260,18 @@ Nachricht: ${formData.message || 'Keine zusätzliche Nachricht'}
             <span className="hidden sm:inline">Zurück</span>
           </button>
 
-          {step < 5 ? (
+          {step < 4 ? (
             <button
               onClick={handleNext}
               disabled={
-                (step === 1 && !formData.damageType) ||
-                (step === 2 && !formData.affectedRooms) ||
-                (step === 3 && !formData.urgency) ||
-                (step === 4 && !formData.address)
+                (step === 1 && !formData.serviceType) ||
+                (step === 2 && !formData.areaSize) ||
+                (step === 3 && !formData.address)
               }
               className={`flex items-center space-x-1 sm:space-x-2 px-4 sm:px-7 py-2.5 sm:py-3.5 font-normal transition-all tracking-wide rounded-lg text-sm sm:text-base ${
-                (step === 1 && !formData.damageType) ||
-                (step === 2 && !formData.affectedRooms) ||
-                (step === 3 && !formData.urgency) ||
-                (step === 4 && !formData.address)
+                (step === 1 && !formData.serviceType) ||
+                (step === 2 && !formData.areaSize) ||
+                (step === 3 && !formData.address)
                   ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                   : 'bg-[#d4af7a] hover:bg-[#b8935f] text-white shadow-sm hover:shadow-md'
               }`}
