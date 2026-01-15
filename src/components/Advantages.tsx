@@ -25,12 +25,12 @@ const Advantages = () => {
     {
       icon: Headphones,
       title: 'Klare Kommunikation',
-      description: 'Transparente Abläufe und feste Ansprechpartner – ohne Ausreden und Verzögerungen',
+      description: 'Transparente Abläufe und feste Ansprechpartner, ohne Ausreden und Verzögerungen',
     },
     {
       icon: Award,
       title: 'Mehr Kontrolle',
-      description: 'Weniger Chaos, mehr Kontrolle – genau das, was professionelle Entscheider brauchen',
+      description: 'Weniger Chaos, mehr Kontrolle, genau das, was professionelle Entscheider brauchen',
     },
   ];
 
