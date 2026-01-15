@@ -61,7 +61,7 @@ Nachricht: ${formData.message || 'Keine zusätzliche Nachricht'}
     } else if (formData.contactMethod === 'email') {
       const emailSubject = encodeURIComponent('Neue Anfrage über Website');
       const emailBody = encodeURIComponent(message);
-      window.location.href = `mailto:info@bausanierung4-0.de?subject=${emailSubject}&body=${emailBody}`;
+      window.location.href = `mailto:info@nordic-bau.de?subject=${emailSubject}&body=${emailBody}`;
     }
 
     onClose();

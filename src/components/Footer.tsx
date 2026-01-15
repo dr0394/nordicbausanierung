@@ -46,8 +46,8 @@ const Footer = () => {
                 </li>
                 <li className="flex items-center space-x-3 group">
                   <Mail className="w-5 h-5 flex-shrink-0 text-[#d4af7a]" />
-                  <a href="mailto:F.b.1985@icloud.com" className="text-gray-600 hover:text-gray-900 transition-colors text-[15px]">
-                    F.b.1985@icloud.com
+                  <a href="mailto:info@nordic-bau.de" className="text-gray-600 hover:text-gray-900 transition-colors text-[15px]">
+                    info@nordic-bau.de
                   </a>
                 </li>
               </ul>
@@ -148,7 +148,7 @@ const Footer = () => {
               <div className="border-l-4 border-[#d4af7a] pl-5 py-1">
                 <h3 className="font-semibold text-gray-900 mb-3 text-lg tracking-wide">Kontakt</h3>
                 <p className="leading-relaxed">Telefon: +49 170 4371672</p>
-                <p className="leading-relaxed">E-Mail: F.b.1985@icloud.com</p>
+                <p className="leading-relaxed">E-Mail: info@nordic-bau.de</p>
               </div>
 
               <div className="border-l-4 border-[#d4af7a] pl-5 py-1">
@@ -265,7 +265,7 @@ const Footer = () => {
                     Nordic Vision GmbH<br />
                     Waldweg 85<br />
                     22393 Hamburg<br />
-                    E-Mail: F.b.1985@icloud.com<br />
+                    E-Mail: info@nordic-bau.de<br />
                     Telefon: +49 170 4371672
                   </p>
                 </div>
