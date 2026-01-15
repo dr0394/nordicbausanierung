@@ -33,7 +33,7 @@ const Navigation = ({ onContactClick }: { onContactClick: () => void }) => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-[#2c3e50] shadow-lg' : 'bg-[#2c3e50]/95 backdrop-blur-sm'
+        isScrolled ? 'bg-[#f9fafb] shadow-lg' : 'bg-[#f9fafb]/95 backdrop-blur-sm'
       }`}
     >
       <div className="container-custom">
@@ -60,8 +60,7 @@ const Navigation = ({ onContactClick }: { onContactClick: () => void }) => {
                   e.preventDefault();
                   scrollToSection(item.href);
                 }}
-                className="px-4 py-2 text-sm font-normal text-white/90 hover:text-[#d4af7a] transition-colors rounded-lg hover:bg-white/10"
-                style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.4)' }}
+                className="px-4 py-2 text-sm font-normal text-gray-900 hover:text-[#d4af7a] transition-colors rounded-lg hover:bg-gray-100"
               >
                 {item.label}
               </a>
@@ -71,8 +70,7 @@ const Navigation = ({ onContactClick }: { onContactClick: () => void }) => {
           <div className="hidden lg:flex items-center space-x-4">
             <button
               onClick={onContactClick}
-              className="border border-white/60 text-white px-6 py-2 text-sm hover:bg-white/10 hover:border-white transition-all duration-300"
-              style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.4)' }}
+              className="border border-gray-300 text-gray-900 px-6 py-2 text-sm hover:bg-gray-100 hover:border-[#d4af7a] transition-all duration-300"
             >
               Kostenloses Angebot
             </button>
@@ -80,7 +78,7 @@ const Navigation = ({ onContactClick }: { onContactClick: () => void }) => {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-white/10 transition-colors text-white"
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors text-gray-900"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -88,7 +86,7 @@ const Navigation = ({ onContactClick }: { onContactClick: () => void }) => {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-[#34495e] border-t border-white/20 shadow-lg">
+        <div className="lg:hidden bg-[#f9fafb] border-t border-gray-200 shadow-lg">
           <div className="container-custom py-4 space-y-2">
             {menuItems.map((item) => (
               <a
@@ -98,8 +96,7 @@ const Navigation = ({ onContactClick }: { onContactClick: () => void }) => {
                   e.preventDefault();
                   scrollToSection(item.href);
                 }}
-                className="block px-4 py-3 text-white/90 hover:bg-white/10 hover:text-[#d4af7a] rounded-lg transition-colors"
-                style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.4)' }}
+                className="block px-4 py-3 text-gray-900 hover:bg-gray-100 hover:text-[#d4af7a] rounded-lg transition-colors"
               >
                 {item.label}
               </a>
@@ -107,16 +104,14 @@ const Navigation = ({ onContactClick }: { onContactClick: () => void }) => {
             <div className="pt-4 space-y-3">
               <a
                 href="tel:+491704371672"
-                className="flex items-center justify-center space-x-2 px-4 py-3 bg-[#2c3e50]/50 rounded-lg text-white border border-white/20"
-                style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.4)' }}
+                className="flex items-center justify-center space-x-2 px-4 py-3 bg-gray-100 rounded-lg text-gray-900 border border-gray-200"
               >
                 <Phone className="w-4 h-4" />
                 <span className="font-normal">+49 170 4371672</span>
               </a>
               <button
                 onClick={onContactClick}
-                className="w-full border border-white/60 text-white px-6 py-3 text-sm hover:bg-white/10 hover:border-white transition-all duration-300"
-                style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.4)' }}
+                className="w-full border border-gray-300 text-gray-900 px-6 py-3 text-sm hover:bg-gray-100 hover:border-[#d4af7a] transition-all duration-300"
               >
                 Kostenloses Angebot
               </button>
