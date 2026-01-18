@@ -89,10 +89,10 @@ const Footer = () => {
 
               <h3 className="font-semibold text-lg mb-6 tracking-wide text-gray-900">Folgen Sie uns</h3>
               <div className="flex space-x-3">
-                <a href="#" className="w-11 h-11 bg-gray-100 hover:bg-gradient-to-br hover:from-[#d4af7a] hover:to-[#b8935f] rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg text-gray-600 hover:text-white">
+                <a href="https://www.facebook.com/profile.php?id=61585767533568" target="_blank" rel="noopener noreferrer" className="w-11 h-11 bg-gray-100 hover:bg-gradient-to-br hover:from-[#d4af7a] hover:to-[#b8935f] rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg text-gray-600 hover:text-white">
                   <Facebook className="w-5 h-5" />
                 </a>
-                <a href="#" className="w-11 h-11 bg-gray-100 hover:bg-gradient-to-br hover:from-[#d4af7a] hover:to-[#b8935f] rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg text-gray-600 hover:text-white">
+                <a href="https://www.instagram.com/nordic_vision_gruppe" target="_blank" rel="noopener noreferrer" className="w-11 h-11 bg-gray-100 hover:bg-gradient-to-br hover:from-[#d4af7a] hover:to-[#b8935f] rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg text-gray-600 hover:text-white">
                   <Instagram className="w-5 h-5" />
                 </a>
                 <a href="#" className="w-11 h-11 bg-gray-100 hover:bg-gradient-to-br hover:from-[#d4af7a] hover:to-[#b8935f] rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg text-gray-600 hover:text-white">
