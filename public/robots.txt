@@ -1,8 +1,14 @@
-# robots.txt für nordic-bau.de
-# Optimiert für Google Search Console
-
 User-agent: *
 Allow: /
 
-# Sitemap-Verweis
-Sitemap: /sitemap.xml
+Sitemap: https://ihr-domain.de/sitemap.xml
+
+# Indexierung fördern
+Crawl-delay: 0
+
+# Wichtige Seiten
+Allow: /#services
+Allow: /#about
+Allow: /#portfolio
+Allow: /#faq
+Allow: /#contact
