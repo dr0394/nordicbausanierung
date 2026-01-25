@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ihr-domain.de/sitemap.xml
+Sitemap: https://nordic-bau.de/sitemap.xml
 
 # Indexierung fördern
 Crawl-delay: 0
@@ -10,5 +10,12 @@ Crawl-delay: 0
 Allow: /#services
 Allow: /#about
 Allow: /#portfolio
+Allow: /#process
+Allow: /#advantages
+Allow: /#testimonials
+Allow: /#team
 Allow: /#faq
 Allow: /#contact
+
+# Blockiere keine Dateien
+Disallow:

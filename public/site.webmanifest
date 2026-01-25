@@ -1,7 +1,7 @@
 {
-  "name": "Bausanierung Notdienst 24/7",
-  "short_name": "Bausanierung",
-  "description": "24/7 Notfallservice bei Brand- und Wasserschäden",
+  "name": "Nordic Bau - 24/7 Notdienst",
+  "short_name": "Nordic Bau",
+  "description": "Nordic Bau - Ihr Partner für 24/7 Bausanierung bei Wasserschäden und Brandschäden in ganz Deutschland",
   "icons": [
     {
       "src": "/favicon-16x16.png",
@@ -32,7 +32,7 @@
   "theme_color": "#1e3a5f",
   "background_color": "#ffffff",
   "display": "standalone",
-  "start_url": "/",
+  "start_url": "https://nordic-bau.de/",
   "scope": "/",
   "lang": "de"
 }
