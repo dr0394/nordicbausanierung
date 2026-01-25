@@ -1,14 +1,42 @@
+# robots.txt für nordic-bau.de
+# Optimiert für Google Search Console
+
+# Alle Bots erlauben (Best Practice für neue Websites)
 User-agent: *
 Allow: /
 
-Sitemap: https://ihr-domain.de/sitemap.xml
-
-# Indexierung fördern
-Crawl-delay: 0
-
-# Wichtige Seiten
+# Wichtige Seiten explizit erlauben
 Allow: /#services
 Allow: /#about
 Allow: /#portfolio
-Allow: /#faq
 Allow: /#contact
+Allow: /#faq
+Allow: /#team
+Allow: /#process
+
+# Assets & Ressourcen erlauben (wichtig für Rendering)
+Allow: /assets/
+Allow: /src/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.svg$
+Allow: /*.webp$
+
+# Keine Crawl-Verzögerung (wichtig für schnelle Indexierung)
+Crawl-delay: 0
+
+# Sitemap-Verweis (KRITISCH für GSC)
+Sitemap: https://nordic-bau.de/sitemap.xml
+
+# Spezielle Bots (falls benötigt)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
