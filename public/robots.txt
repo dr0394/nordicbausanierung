@@ -29,7 +29,7 @@ Allow: /*.webp$
 Crawl-delay: 0
 
 # Sitemap-Verweis (KRITISCH für GSC)
-Sitemap: https://nordic-bau.de/sitemap.xml
+Sitemap: /sitemap.xml
 
 # Spezielle Bots (falls benötigt)
 User-agent: Googlebot
