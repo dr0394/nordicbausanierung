@@ -6,7 +6,6 @@ import Services from './components/Services';
 import Advantages from './components/Advantages';
 import Process from './components/Process';
 import Portfolio from './components/Portfolio';
-import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
 import About from './components/About';
 import Team from './components/Team';
@@ -61,8 +60,6 @@ function App() {
           <Process />
 
           <Portfolio />
-
-          <Gallery />
 
           <Testimonials />
 
