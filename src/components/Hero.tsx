@@ -1,4 +1,3 @@
-import hamburgNight from '../assets/whatsapp_image_2025-12-29_at_22.38.04.jpeg';
 import { Star } from 'lucide-react';
 
 const Hero = ({ onContactClick }: { onContactClick: () => void }) => {
@@ -6,7 +5,7 @@ const Hero = ({ onContactClick }: { onContactClick: () => void }) => {
     <section id="hero" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${hamburgNight})` }}
+        style={{ backgroundImage: 'url(https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1920)' }}
       ></div>
 
       <div className="absolute inset-0 bg-gradient-to-b from-[#2c3e50]/40 via-[#2c3e50]/35 to-[#2c3e50]/45"></div>
