@@ -9,7 +9,7 @@ const Hero = ({ onContactClick }: { onContactClick: () => void }) => {
         style={{ backgroundImage: `url(${hamburgNight})` }}
       ></div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-[#2c3e50]/70 via-[#2c3e50]/60 to-[#2c3e50]/70"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-[#2c3e50]/40 via-[#2c3e50]/35 to-[#2c3e50]/45"></div>
 
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-16 relative z-10">
         <div className="max-w-3xl">
