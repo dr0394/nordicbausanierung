@@ -1,7 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, Upload } from 'lucide-react';
 
-const Navigation = ({ onContactClick }: { onContactClick: () => void }) => {
+interface NavigationProps {
+  onContactClick: () => void;
+  onUploadClick?: () => void;
+  onHomeClick?: () => void;
+}
+
+const Navigation = ({ onContactClick, onUploadClick, onHomeClick }: NavigationProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -39,14 +45,25 @@ const Navigation = ({ onContactClick }: { onContactClick: () => void }) => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 sm:h-20">
           <div className="flex items-center">
-            <a href="#hero" onClick={() => scrollToSection('#hero')} className="flex items-center space-x-3">
+            <a
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onHomeClick) {
+                  onHomeClick();
+                } else {
+                  scrollToSection('#hero');
+                }
+              }}
+              className="flex items-center space-x-3"
+            >
               <img
                 src="https://i.imgur.com/LPgaXte.png"
                 alt="Nordic Vision Logo"
                 className="h-10 sm:h-12 md:h-14 w-auto"
               />
               <div className="hidden md:block">
-               
+
               </div>
             </a>
           </div>
@@ -68,6 +85,15 @@ const Navigation = ({ onContactClick }: { onContactClick: () => void }) => {
           </div>
 
           <div className="hidden lg:flex items-center space-x-4">
+            {onUploadClick && (
+              <button
+                onClick={onUploadClick}
+                className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-600 hover:text-[#d4af7a] transition-colors"
+              >
+                <Upload className="w-4 h-4" />
+                <span>Upload</span>
+              </button>
+            )}
             <button
               onClick={onContactClick}
               className="border border-gray-300 text-gray-900 px-6 py-2 text-sm hover:bg-gray-100 hover:border-[#d4af7a] transition-all duration-300"
@@ -109,6 +135,18 @@ const Navigation = ({ onContactClick }: { onContactClick: () => void }) => {
                 <Phone className="w-4 h-4" />
                 <span className="font-normal">+49 170 4371672</span>
               </a>
+              {onUploadClick && (
+                <button
+                  onClick={() => {
+                    onUploadClick();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gray-100 rounded-lg text-gray-900 border border-gray-200"
+                >
+                  <Upload className="w-4 h-4" />
+                  <span>Upload</span>
+                </button>
+              )}
               <button
                 onClick={onContactClick}
                 className="w-full border border-gray-300 text-gray-900 px-6 py-3 text-sm hover:bg-gray-100 hover:border-[#d4af7a] transition-all duration-300"

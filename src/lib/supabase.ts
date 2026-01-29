@@ -1,0 +1,23 @@
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error('Missing Supabase environment variables');
+}
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+export interface Image {
+  id: string;
+  title: string;
+  description: string | null;
+  file_path: string;
+  file_url: string;
+  category: string;
+  uploaded_at: string;
+  uploaded_by: string | null;
+  is_featured: boolean;
+  display_order: number;
+}

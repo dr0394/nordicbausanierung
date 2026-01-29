@@ -1,0 +1,327 @@
+import { useState, useEffect } from 'react';
+import { Upload, X, Image as ImageIcon, Loader2 } from 'lucide-react';
+import { supabase, Image } from '../lib/supabase';
+
+const STORAGE_BUCKET = 'gallery-images';
+
+export default function ImageUpload() {
+  const [uploading, setUploading] = useState(false);
+  const [images, setImages] = useState<Image[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    category: 'renovierung',
+    isFeatured: true,
+  });
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchImages();
+    initializeBucket();
+  }, []);
+
+  const initializeBucket = async () => {
+    const { data: buckets } = await supabase.storage.listBuckets();
+    const bucketExists = buckets?.some(bucket => bucket.name === STORAGE_BUCKET);
+
+    if (!bucketExists) {
+      await supabase.storage.createBucket(STORAGE_BUCKET, {
+        public: true,
+        fileSizeLimit: 5242880,
+      });
+    }
+  };
+
+  const fetchImages = async () => {
+    setLoading(true);
+    const { data, error } = await supabase
+      .from('images')
+      .select('*')
+      .order('uploaded_at', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching images:', error);
+    } else {
+      setImages(data || []);
+    }
+    setLoading(false);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleUpload = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!selectedFile) {
+      alert('Bitte wählen Sie ein Bild aus');
+      return;
+    }
+
+    if (!formData.title.trim()) {
+      alert('Bitte geben Sie einen Titel ein');
+      return;
+    }
+
+    setUploading(true);
+
+    try {
+      const fileExt = selectedFile.name.split('.').pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+      const filePath = `${formData.category}/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from(STORAGE_BUCKET)
+        .upload(filePath, selectedFile, {
+          cacheControl: '3600',
+          upsert: false
+        });
+
+      if (uploadError) throw uploadError;
+
+      const { data: urlData } = supabase.storage
+        .from(STORAGE_BUCKET)
+        .getPublicUrl(filePath);
+
+      const { error: dbError } = await supabase
+        .from('images')
+        .insert({
+          title: formData.title,
+          description: formData.description || null,
+          file_path: filePath,
+          file_url: urlData.publicUrl,
+          category: formData.category,
+          is_featured: formData.isFeatured,
+        });
+
+      if (dbError) throw dbError;
+
+      alert('Bild erfolgreich hochgeladen!');
+
+      setFormData({
+        title: '',
+        description: '',
+        category: 'renovierung',
+        isFeatured: true,
+      });
+      setSelectedFile(null);
+      setPreviewUrl(null);
+      fetchImages();
+    } catch (error) {
+      console.error('Upload error:', error);
+      alert('Fehler beim Hochladen des Bildes');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleDelete = async (image: Image) => {
+    if (!confirm('Möchten Sie dieses Bild wirklich löschen?')) return;
+
+    try {
+      const { error: storageError } = await supabase.storage
+        .from(STORAGE_BUCKET)
+        .remove([image.file_path]);
+
+      if (storageError) throw storageError;
+
+      const { error: dbError } = await supabase
+        .from('images')
+        .delete()
+        .eq('id', image.id);
+
+      if (dbError) throw dbError;
+
+      alert('Bild erfolgreich gelöscht!');
+      fetchImages();
+    } catch (error) {
+      console.error('Delete error:', error);
+      alert('Fehler beim Löschen des Bildes');
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Bilder verwalten</h1>
+          <p className="text-xl text-gray-600">Laden Sie Bilder hoch und verwalten Sie Ihre Galerie</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Neues Bild hochladen</h2>
+
+            <form onSubmit={handleUpload} className="space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Bild auswählen
+                </label>
+                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-blue-500 transition-colors">
+                  <div className="space-y-1 text-center">
+                    {previewUrl ? (
+                      <div className="relative">
+                        <img src={previewUrl} alt="Preview" className="mx-auto h-48 object-cover rounded-lg" />
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setPreviewUrl(null);
+                            setSelectedFile(null);
+                          }}
+                          className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full hover:bg-red-600"
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
+                      </div>
+                    ) : (
+                      <>
+                        <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
+                        <div className="flex text-sm text-gray-600">
+                          <label className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500">
+                            <span>Datei auswählen</span>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              onChange={handleFileChange}
+                              className="sr-only"
+                            />
+                          </label>
+                        </div>
+                        <p className="text-xs text-gray-500">PNG, JPG, GIF bis 5MB</p>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Titel
+                </label>
+                <input
+                  type="text"
+                  value={formData.title}
+                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Bildtitel eingeben"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Beschreibung
+                </label>
+                <textarea
+                  value={formData.description}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Bildbeschreibung (optional)"
+                  rows={3}
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Kategorie
+                </label>
+                <select
+                  value={formData.category}
+                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  <option value="renovierung">Renovierung</option>
+                  <option value="neubau">Neubau</option>
+                  <option value="sanierung">Sanierung</option>
+                  <option value="modernisierung">Modernisierung</option>
+                </select>
+              </div>
+
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="isFeatured"
+                  checked={formData.isFeatured}
+                  onChange={(e) => setFormData({ ...formData, isFeatured: e.target.checked })}
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                />
+                <label htmlFor="isFeatured" className="ml-2 block text-sm text-gray-700">
+                  In Galerie anzeigen
+                </label>
+              </div>
+
+              <button
+                type="submit"
+                disabled={uploading || !selectedFile}
+                className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center justify-center"
+              >
+                {uploading ? (
+                  <>
+                    <Loader2 className="animate-spin h-5 w-5 mr-2" />
+                    Wird hochgeladen...
+                  </>
+                ) : (
+                  <>
+                    <Upload className="h-5 w-5 mr-2" />
+                    Hochladen
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Hochgeladene Bilder</h2>
+
+            {loading ? (
+              <div className="flex justify-center items-center h-64">
+                <Loader2 className="animate-spin h-8 w-8 text-blue-600" />
+              </div>
+            ) : images.length === 0 ? (
+              <div className="text-center py-12">
+                <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
+                <p className="mt-4 text-gray-500">Noch keine Bilder hochgeladen</p>
+              </div>
+            ) : (
+              <div className="space-y-4 max-h-[600px] overflow-y-auto">
+                {images.map((image) => (
+                  <div key={image.id} className="flex items-start space-x-4 p-4 border border-gray-200 rounded-lg">
+                    <img
+                      src={image.file_url}
+                      alt={image.title}
+                      className="w-24 h-24 object-cover rounded-lg"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg font-semibold text-gray-900 truncate">{image.title}</h3>
+                      <p className="text-sm text-gray-600">{image.category}</p>
+                      <p className="text-xs text-gray-500 mt-1">
+                        {new Date(image.uploaded_at).toLocaleDateString('de-DE')}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => handleDelete(image)}
+                      className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                    >
+                      <X className="h-5 w-5" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

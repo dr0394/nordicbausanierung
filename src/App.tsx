@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import ProblemSolution from './components/ProblemSolution';
@@ -18,39 +18,65 @@ import ContactModal from './components/ContactModal';
 import WhatsAppButton from './components/WhatsAppButton';
 import CookieBanner from './components/CookieBanner';
 import CTASection from './components/CTASection';
+import ImageUpload from './components/ImageUpload';
 
 function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState('home');
+
+  useEffect(() => {
+    const path = window.location.pathname;
+    if (path === '/upload') {
+      setCurrentPage('upload');
+    } else {
+      setCurrentPage('home');
+    }
+  }, []);
+
+  const navigateTo = (page: string) => {
+    setCurrentPage(page);
+    window.history.pushState({}, '', page === 'home' ? '/' : `/${page}`);
+  };
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      <Navigation onContactClick={() => setIsContactModalOpen(true)} />
+      <Navigation
+        onContactClick={() => setIsContactModalOpen(true)}
+        onUploadClick={() => navigateTo('upload')}
+        onHomeClick={() => navigateTo('home')}
+      />
 
-      <Hero onContactClick={() => setIsContactModalOpen(true)} />
+      {currentPage === 'upload' ? (
+        <ImageUpload />
+      ) : (
+        <>
+          <Hero onContactClick={() => setIsContactModalOpen(true)} />
 
-      <ProblemSolution />
+          <ProblemSolution />
 
-      <Services onContactClick={() => setIsContactModalOpen(true)} />
+          <Services onContactClick={() => setIsContactModalOpen(true)} />
 
-      <Advantages />
+          <Advantages />
 
-      <Process />
+          <Process />
 
-      <Portfolio />
+          <Portfolio />
 
-    
+          <Gallery />
 
-      <Testimonials />
+          <Testimonials />
 
-      <About />
+          <About />
 
-      <Team />
+          <Team />
 
-      
+          <Certificates />
 
-      <FAQ />
+          <FAQ />
 
-      <Contact onContactClick={() => setIsContactModalOpen(true)} />
+          <Contact onContactClick={() => setIsContactModalOpen(true)} />
+        </>
+      )}
 
       <Footer />
 
