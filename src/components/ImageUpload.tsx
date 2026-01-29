@@ -20,20 +20,7 @@ export default function ImageUpload() {
 
   useEffect(() => {
     fetchImages();
-    initializeBucket();
   }, []);
-
-  const initializeBucket = async () => {
-    const { data: buckets } = await supabase.storage.listBuckets();
-    const bucketExists = buckets?.some(bucket => bucket.name === STORAGE_BUCKET);
-
-    if (!bucketExists) {
-      await supabase.storage.createBucket(STORAGE_BUCKET, {
-        public: true,
-        fileSizeLimit: 5242880,
-      });
-    }
-  };
 
   const fetchImages = async () => {
     setLoading(true);
