@@ -16,6 +16,7 @@ export default function ImageUpload() {
   });
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     fetchImages();
@@ -52,12 +53,54 @@ export default function ImageUpload() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setSelectedFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewUrl(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      processFile(file);
+    }
+  };
+
+  const processFile = (file: File) => {
+    if (!file.type.startsWith('image/')) {
+      alert('Bitte wählen Sie nur Bilddateien aus');
+      return;
+    }
+
+    if (file.size > 5242880) {
+      alert('Die Datei ist zu groß. Maximale Größe: 5MB');
+      return;
+    }
+
+    setSelectedFile(file);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreviewUrl(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleDragEnter = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+
+    const files = e.dataTransfer.files;
+    if (files && files.length > 0) {
+      processFile(files[0]);
     }
   };
 
@@ -168,7 +211,17 @@ export default function ImageUpload() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Bild auswählen
                 </label>
-                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-blue-500 transition-colors">
+                <div
+                  onDragEnter={handleDragEnter}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                  className={`mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-dashed rounded-lg transition-all ${
+                    isDragging
+                      ? 'border-blue-500 bg-blue-50 scale-105'
+                      : 'border-gray-300 hover:border-blue-500'
+                  }`}
+                >
                   <div className="space-y-1 text-center">
                     {previewUrl ? (
                       <div className="relative">
@@ -186,10 +239,10 @@ export default function ImageUpload() {
                       </div>
                     ) : (
                       <>
-                        <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
+                        <Upload className={`mx-auto h-12 w-12 ${isDragging ? 'text-blue-500' : 'text-gray-400'}`} />
                         <div className="flex text-sm text-gray-600">
                           <label className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500">
-                            <span>Datei auswählen</span>
+                            <span>{isDragging ? 'Hier loslassen' : 'Datei auswählen oder hierher ziehen'}</span>
                             <input
                               type="file"
                               accept="image/*"
