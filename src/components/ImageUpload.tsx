@@ -157,7 +157,28 @@ export default function ImageUpload() {
   };
 
   const handleDelete = async (image: Image) => {
-    alert('Löschen ist aus Sicherheitsgründen deaktiviert. Bitte implementieren Sie Authentifizierung für diese Funktion.');
+    if (!confirm('Möchten Sie dieses Bild wirklich löschen?')) return;
+
+    try {
+      const { error: storageError } = await supabase.storage
+        .from(STORAGE_BUCKET)
+        .remove([image.file_path]);
+
+      if (storageError) throw storageError;
+
+      const { error: dbError } = await supabase
+        .from('images')
+        .delete()
+        .eq('id', image.id);
+
+      if (dbError) throw dbError;
+
+      alert('Bild erfolgreich gelöscht!');
+      fetchImages();
+    } catch (error) {
+      console.error('Delete error:', error);
+      alert('Fehler beim Löschen des Bildes');
+    }
   };
 
   return (
