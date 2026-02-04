@@ -27,9 +27,9 @@ const Impressum = ({ isOpen, onClose }: ImpressumProps) => {
           <section>
             <h3 className="text-xl font-normal text-gray-900 mb-3">Angaben gemäß § 5 TMG</h3>
             <p className="text-gray-700 leading-relaxed">
-              Nordic Bau GmbH<br />
-              [Straße und Hausnummer]<br />
-              [PLZ und Ort]<br />
+              Nordic Vision GmbH<br />
+              Waldweg 85<br />
+              22393 Hamburg<br />
               Deutschland
             </p>
           </section>
@@ -37,8 +37,8 @@ const Impressum = ({ isOpen, onClose }: ImpressumProps) => {
           <section>
             <h3 className="text-xl font-normal text-gray-900 mb-3">Vertreten durch</h3>
             <p className="text-gray-700 leading-relaxed">
-              [Geschäftsführer Name]<br />
-              Geschäftsführer
+              Daniela Roth<br />
+              Geschäftsführerin
             </p>
           </section>
 
@@ -55,8 +55,8 @@ const Impressum = ({ isOpen, onClose }: ImpressumProps) => {
             <h3 className="text-xl font-normal text-gray-900 mb-3">Registereintrag</h3>
             <p className="text-gray-700 leading-relaxed">
               Eintragung im Handelsregister<br />
-              Registergericht: [Amtsgericht]<br />
-              Registernummer: [HRB-Nummer]
+              Registergericht: Amtsgericht Hamburg<br />
+              Registernummer: HRB 189418
             </p>
           </section>
 
@@ -64,7 +64,7 @@ const Impressum = ({ isOpen, onClose }: ImpressumProps) => {
             <h3 className="text-xl font-normal text-gray-900 mb-3">Umsatzsteuer-ID</h3>
             <p className="text-gray-700 leading-relaxed">
               Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br />
-              [USt-IdNr.]
+              Folgt
             </p>
           </section>
 

@@ -2,10 +2,12 @@ import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react
 import { useState } from 'react';
 import Impressum from './Impressum';
 import Privacy from './Privacy';
+import AGB from './AGB';
 
 const Footer = () => {
   const [showImpressum, setShowImpressum] = useState(false);
   const [showDatenschutz, setShowDatenschutz] = useState(false);
+  const [showAGB, setShowAGB] = useState(false);
 
   const currentYear = new Date().getFullYear();
 
@@ -85,6 +87,14 @@ const Footer = () => {
                     Datenschutzerklärung
                   </button>
                 </li>
+                <li>
+                  <button
+                    onClick={() => setShowAGB(true)}
+                    className="text-gray-600 hover:text-gray-900 transition-all text-[15px] hover:translate-x-1 inline-block"
+                  >
+                    AGB
+                  </button>
+                </li>
               </ul>
 
               <h3 className="font-semibold text-lg mb-6 tracking-wide text-gray-900">Folgen Sie uns</h3>
@@ -130,6 +140,7 @@ const Footer = () => {
 
       <Impressum isOpen={showImpressum} onClose={() => setShowImpressum(false)} />
       <Privacy isOpen={showDatenschutz} onClose={() => setShowDatenschutz(false)} />
+      <AGB isOpen={showAGB} onClose={() => setShowAGB(false)} />
     </>
   );
 };
