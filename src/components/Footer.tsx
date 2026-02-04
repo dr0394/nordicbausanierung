@@ -1,15 +1,12 @@
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
-import { useState } from 'react';
-import Impressum from './Impressum';
-import Privacy from './Privacy';
-import AGB from './AGB';
 
 const Footer = () => {
-  const [showImpressum, setShowImpressum] = useState(false);
-  const [showDatenschutz, setShowDatenschutz] = useState(false);
-  const [showAGB, setShowAGB] = useState(false);
-
   const currentYear = new Date().getFullYear();
+
+  const navigateToPage = (page: string) => {
+    window.history.pushState({}, '', `/${page}`);
+    window.location.href = `/${page}`;
+  };
 
   return (
     <>
@@ -72,28 +69,40 @@ const Footer = () => {
               <h3 className="font-semibold text-lg mb-6 tracking-wide text-gray-900">Rechtliches</h3>
               <ul className="space-y-3 mb-8">
                 <li>
-                  <button
-                    onClick={() => setShowImpressum(true)}
+                  <a
+                    href="/impressum"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateToPage('impressum');
+                    }}
                     className="text-gray-600 hover:text-gray-900 transition-all text-[15px] hover:translate-x-1 inline-block"
                   >
                     Impressum
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button
-                    onClick={() => setShowDatenschutz(true)}
+                  <a
+                    href="/datenschutz"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateToPage('datenschutz');
+                    }}
                     className="text-gray-600 hover:text-gray-900 transition-all text-[15px] hover:translate-x-1 inline-block"
                   >
                     Datenschutzerklärung
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button
-                    onClick={() => setShowAGB(true)}
+                  <a
+                    href="/agb"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateToPage('agb');
+                    }}
                     className="text-gray-600 hover:text-gray-900 transition-all text-[15px] hover:translate-x-1 inline-block"
                   >
                     AGB
-                  </button>
+                  </a>
                 </li>
               </ul>
 
@@ -137,10 +146,6 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-
-      <Impressum isOpen={showImpressum} onClose={() => setShowImpressum(false)} />
-      <Privacy isOpen={showDatenschutz} onClose={() => setShowDatenschutz(false)} />
-      <AGB isOpen={showAGB} onClose={() => setShowAGB(false)} />
     </>
   );
 };

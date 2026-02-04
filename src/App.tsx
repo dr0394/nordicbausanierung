@@ -18,6 +18,9 @@ import WhatsAppButton from './components/WhatsAppButton';
 import CookieBanner from './components/CookieBanner';
 import CTASection from './components/CTASection';
 import ImageUpload from './components/ImageUpload';
+import Impressum from './components/Impressum';
+import Privacy from './components/Privacy';
+import AGB from './components/AGB';
 
 function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -27,6 +30,12 @@ function App() {
     const path = window.location.pathname;
     if (path === '/upload') {
       setCurrentPage('upload');
+    } else if (path === '/impressum') {
+      setCurrentPage('impressum');
+    } else if (path === '/datenschutz') {
+      setCurrentPage('datenschutz');
+    } else if (path === '/agb') {
+      setCurrentPage('agb');
     } else {
       setCurrentPage('home');
     }
@@ -37,16 +46,26 @@ function App() {
     window.history.pushState({}, '', page === 'home' ? '/' : `/${page}`);
   };
 
+  const showNavigation = !['impressum', 'datenschutz', 'agb'].includes(currentPage);
+
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      <Navigation
-        onContactClick={() => setIsContactModalOpen(true)}
-        onUploadClick={() => navigateTo('upload')}
-        onHomeClick={() => navigateTo('home')}
-      />
+      {showNavigation && (
+        <Navigation
+          onContactClick={() => setIsContactModalOpen(true)}
+          onUploadClick={() => navigateTo('upload')}
+          onHomeClick={() => navigateTo('home')}
+        />
+      )}
 
       {currentPage === 'upload' ? (
         <ImageUpload />
+      ) : currentPage === 'impressum' ? (
+        <Impressum onBack={() => navigateTo('home')} />
+      ) : currentPage === 'datenschutz' ? (
+        <Privacy onBack={() => navigateTo('home')} />
+      ) : currentPage === 'agb' ? (
+        <AGB onBack={() => navigateTo('home')} />
       ) : (
         <>
           <Hero onContactClick={() => setIsContactModalOpen(true)} />
@@ -72,10 +91,10 @@ function App() {
           <FAQ />
 
           <Contact onContactClick={() => setIsContactModalOpen(true)} />
+
+          <Footer />
         </>
       )}
-
-      <Footer />
 
       <ContactModal
         isOpen={isContactModalOpen}

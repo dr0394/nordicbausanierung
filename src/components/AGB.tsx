@@ -1,29 +1,27 @@
-import { X } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 
 interface AGBProps {
-  isOpen: boolean;
-  onClose: () => void;
+  onBack: () => void;
 }
 
-const AGB = ({ isOpen, onClose }: AGBProps) => {
-  if (!isOpen) return null;
-
+const AGB = ({ onBack }: AGBProps) => {
   return (
-    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-white rounded-2xl max-w-4xl w-full my-8 shadow-2xl">
-        <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex items-center justify-between rounded-t-2xl">
-          <h2 className="text-2xl font-normal text-gray-900" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.08)' }}>
-            Allgemeine Geschäftsbedingungen (AGB)
-          </h2>
+    <div className="min-h-screen bg-white">
+      <div className="container-custom py-20">
+        <div className="max-w-4xl mx-auto">
           <button
-            onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            onClick={onBack}
+            className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors mb-8"
           >
-            <X className="w-6 h-6" />
+            <ArrowLeft className="w-5 h-5" />
+            <span>Zurück</span>
           </button>
-        </div>
 
-        <div className="p-6 sm:p-8 space-y-6 max-h-[70vh] overflow-y-auto">
+          <h1 className="text-4xl font-normal text-gray-900 mb-12" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.08)' }}>
+            Allgemeine Geschäftsbedingungen (AGB)
+          </h1>
+
+        <div className="space-y-8">
           <section>
             <p className="text-gray-700 leading-relaxed font-semibold mb-4">
               Nordic Vision Bau GmbH
@@ -179,14 +177,6 @@ const AGB = ({ isOpen, onClose }: AGBProps) => {
             </p>
           </section>
         </div>
-
-        <div className="sticky bottom-0 bg-white border-t border-gray-200 p-6 rounded-b-2xl">
-          <button
-            onClick={onClose}
-            className="w-full bg-[#d4af7a] hover:bg-[#b8935f] text-white px-6 py-3 rounded-lg transition-all shadow-sm hover:shadow-md font-normal tracking-wide"
-          >
-            Schließen
-          </button>
         </div>
       </div>
     </div>
