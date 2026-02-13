@@ -1,8 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Flame, Droplet, Home, Building, Zap, Wrench } from 'lucide-react';
 
 const Portfolio = () => {
   const [filter, setFilter] = useState('all');
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://elfsightcdn.com/platform.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
 
   const projects = [
     {
@@ -138,6 +151,10 @@ const Portfolio = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-16">
+          <div className="elfsight-app-fdbac7f5-64db-4c97-88d3-4e9cb033d8b7" data-elfsight-app-lazy></div>
         </div>
       </div>
     </section>
