@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
+import LoadingScreen from './components/LoadingScreen';
 import ProblemSolution from './components/ProblemSolution';
 import Services from './components/Services';
 import Advantages from './components/Advantages';
@@ -25,6 +26,9 @@ import AGB from './components/AGB';
 function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState('home');
+  const [showLoading, setShowLoading] = useState(() => {
+    return sessionStorage.getItem('nv_loaded') !== 'true';
+  });
 
   useEffect(() => {
     const path = window.location.pathname;
@@ -48,8 +52,16 @@ function App() {
 
   const showNavigation = !['impressum', 'datenschutz', 'agb'].includes(currentPage);
 
+  const handleLoadingComplete = () => {
+    sessionStorage.setItem('nv_loaded', 'true');
+    setShowLoading(false);
+  };
+
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      {showLoading && currentPage === 'home' && (
+        <LoadingScreen onComplete={handleLoadingComplete} />
+      )}
       {showNavigation && (
         <Navigation
           onContactClick={() => setIsContactModalOpen(true)}
