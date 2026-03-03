@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Upload, X, Image as ImageIcon, Loader2 } from 'lucide-react';
+import { Upload, X, Image as ImageIcon, Loader2, Video } from 'lucide-react';
 import { supabase, Image } from '../lib/supabase';
 
 const STORAGE_BUCKET = 'gallery-images';
@@ -45,13 +45,17 @@ export default function ImageUpload() {
   };
 
   const processFile = (file: File) => {
-    if (!file.type.startsWith('image/')) {
-      alert('Bitte wählen Sie nur Bilddateien aus');
+    const isImage = file.type.startsWith('image/');
+    const isVideo = file.type.startsWith('video/');
+
+    if (!isImage && !isVideo) {
+      alert('Bitte wählen Sie nur Bild- oder Videodateien aus');
       return;
     }
 
-    if (file.size > 5242880) {
-      alert('Die Datei ist zu groß. Maximale Größe: 5MB');
+    const maxSize = isVideo ? 104857600 : 5242880;
+    if (file.size > maxSize) {
+      alert(`Die Datei ist zu groß. Maximale Größe: ${isVideo ? '100MB' : '5MB'}`);
       return;
     }
 
@@ -95,7 +99,7 @@ export default function ImageUpload() {
     e.preventDefault();
 
     if (!selectedFile) {
-      alert('Bitte wählen Sie ein Bild aus');
+      alert('Bitte wählen Sie eine Datei aus');
       return;
     }
 
@@ -137,7 +141,7 @@ export default function ImageUpload() {
 
       if (dbError) throw dbError;
 
-      alert('Bild erfolgreich hochgeladen!');
+      alert('Datei erfolgreich hochgeladen!');
 
       setFormData({
         title: '',
@@ -150,7 +154,7 @@ export default function ImageUpload() {
       fetchImages();
     } catch (error) {
       console.error('Upload error:', error);
-      alert('Fehler beim Hochladen des Bildes');
+      alert('Fehler beim Hochladen der Datei');
     } finally {
       setUploading(false);
     }
@@ -164,18 +168,18 @@ export default function ImageUpload() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Bilder verwalten</h1>
-          <p className="text-xl text-gray-600">Laden Sie Bilder hoch und verwalten Sie Ihre Galerie</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Medien verwalten</h1>
+          <p className="text-xl text-gray-600">Laden Sie Bilder und Videos hoch und verwalten Sie Ihre Galerie</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Neues Bild hochladen</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Neue Datei hochladen</h2>
 
             <form onSubmit={handleUpload} className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Bild auswählen
+                  Bild oder Video auswählen
                 </label>
                 <div
                   onDragEnter={handleDragEnter}
@@ -191,7 +195,11 @@ export default function ImageUpload() {
                   <div className="space-y-1 text-center">
                     {previewUrl ? (
                       <div className="relative">
-                        <img src={previewUrl} alt="Preview" className="mx-auto h-48 object-cover rounded-lg" />
+                        {selectedFile?.type.startsWith('video/') ? (
+                          <video src={previewUrl} controls className="mx-auto h-48 rounded-lg" />
+                        ) : (
+                          <img src={previewUrl} alt="Preview" className="mx-auto h-48 object-cover rounded-lg" />
+                        )}
                         <button
                           type="button"
                           onClick={() => {
@@ -211,13 +219,13 @@ export default function ImageUpload() {
                             <span>{isDragging ? 'Hier loslassen' : 'Datei auswählen oder hierher ziehen'}</span>
                             <input
                               type="file"
-                              accept="image/*"
+                              accept="image/*,video/*"
                               onChange={handleFileChange}
                               className="sr-only"
                             />
                           </label>
                         </div>
-                        <p className="text-xs text-gray-500">PNG, JPG, GIF bis 5MB</p>
+                        <p className="text-xs text-gray-500">Bilder bis 5MB, Videos bis 100MB</p>
                       </>
                     )}
                   </div>
@@ -233,7 +241,7 @@ export default function ImageUpload() {
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Bildtitel eingeben"
+                  placeholder="Titel eingeben"
                   required
                 />
               </div>
@@ -246,7 +254,7 @@ export default function ImageUpload() {
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Bildbeschreibung (optional)"
+                  placeholder="Beschreibung (optional)"
                   rows={3}
                 />
               </div>
@@ -301,7 +309,7 @@ export default function ImageUpload() {
           </div>
 
           <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Hochgeladene Bilder</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Hochgeladene Dateien</h2>
 
             {loading ? (
               <div className="flex justify-center items-center h-64">
@@ -310,17 +318,23 @@ export default function ImageUpload() {
             ) : images.length === 0 ? (
               <div className="text-center py-12">
                 <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
-                <p className="mt-4 text-gray-500">Noch keine Bilder hochgeladen</p>
+                <p className="mt-4 text-gray-500">Noch keine Dateien hochgeladen</p>
               </div>
             ) : (
               <div className="space-y-4 max-h-[600px] overflow-y-auto">
                 {images.map((image) => (
                   <div key={image.id} className="flex items-start space-x-4 p-4 border border-gray-200 rounded-lg">
-                    <img
-                      src={image.file_url}
-                      alt={image.title}
-                      className="w-24 h-24 object-cover rounded-lg"
-                    />
+                    {image.file_url.match(/\.(mp4|webm|ogg)$/i) ? (
+                      <div className="relative w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <Video className="w-8 h-8 text-gray-400" />
+                      </div>
+                    ) : (
+                      <img
+                        src={image.file_url}
+                        alt={image.title}
+                        className="w-24 h-24 object-cover rounded-lg"
+                      />
+                    )}
                     <div className="flex-1 min-w-0">
                       <h3 className="text-lg font-semibold text-gray-900 truncate">{image.title}</h3>
                       <p className="text-sm text-gray-600">{image.category}</p>
