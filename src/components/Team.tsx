@@ -3,28 +3,16 @@ import { User, CheckCircle } from 'lucide-react';
 const Team = () => {
   const teamMembers = [
     {
-      name: 'Max Kowalski',
-      role: 'Geschäftsführer & Meister',
-      description: 'Bauingenieur mit über 15 Jahren Erfahrung in der Sanierung',
-      qualifications: ['Meister im Bauhandwerk', 'TÜV-Sachverständiger'],
+      name: 'Daniela Roth',
+      role: 'Geschäftsführerin',
+      description: 'Leitung und strategische Entwicklung des Unternehmens',
+      qualifications: ['Geschäftsführerin', 'Langjährige Branchenerfahrung'],
     },
     {
-      name: 'Stefan Müller',
-      role: 'Projektleiter Schadensanierung',
-      description: 'Spezialist für Brand- und Wasserschadensanierung',
-      qualifications: ['Fachkraft für Schimmelsanierung', 'Brandschutzbeauftragter'],
-    },
-    {
-      name: 'Anna Schmidt',
-      role: 'Projektmanagerin',
-      description: 'Koordination und Kundenbetreuung für alle Sanierungsprojekte',
-      qualifications: ['Bauingenieurin', 'Projektmanagement-Zertifikat'],
-    },
-    {
-      name: 'Thomas Weber',
-      role: 'Bauleiter',
-      description: 'Überwachung und Qualitätskontrolle auf allen Baustellen',
-      qualifications: ['Meister im Mauerhandwerk', '10+ Jahre Erfahrung'],
+      name: 'Fares Banaouas',
+      role: 'Projektleitung und COO',
+      description: 'Operative Geschäftsführung und Projektkoordination',
+      qualifications: ['B. Ing. und Baukalkulator', 'Chief Operating Officer'],
     },
   ];
 
@@ -50,7 +38,7 @@ const Team = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
           {teamMembers.map((member, index) => (
             <div
               key={index}
