@@ -1,4 +1,4 @@
-import { User, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 
 const Team = () => {
   const teamMembers = [
@@ -7,12 +7,14 @@ const Team = () => {
       role: 'Geschäftsführerin',
       description: 'Leitung und strategische Entwicklung des Unternehmens',
       qualifications: ['Geschäftsführerin', 'Langjährige Branchenerfahrung'],
+      image: 'https://kvfgqhuyudwuqqypopgl.supabase.co/storage/v1/object/public/gallery-images/renovierung/1772580243558-4jz2.jpeg',
     },
     {
       name: 'Fares Banaouas',
       role: 'Projektleitung und COO',
       description: 'Operative Geschäftsführung und Projektkoordination',
       qualifications: ['B. Ing. und Baukalkulator', 'Chief Operating Officer'],
+      image: 'https://kvfgqhuyudwuqqypopgl.supabase.co/storage/v1/object/public/gallery-images/modernisierung/1772580228256-wsewd.jpeg',
     },
   ];
 
@@ -44,8 +46,12 @@ const Team = () => {
               key={index}
               className="bg-[#34495e]/50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-white/20"
             >
-              <div className="aspect-square bg-gradient-to-br from-[#d4af7a] to-[#b8935f] flex items-center justify-center">
-                <User className="w-24 h-24 text-white" />
+              <div className="aspect-square bg-gradient-to-br from-[#d4af7a] to-[#b8935f] flex items-center justify-center overflow-hidden">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-normal text-white mb-1" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.6)' }}>{member.name}</h3>
