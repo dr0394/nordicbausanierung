@@ -325,7 +325,7 @@ export default function ImageUpload() {
                 {images.map((image) => (
                   <div key={image.id} className="border border-gray-200 rounded-lg overflow-hidden">
                     <div className="flex items-start space-x-4 p-4">
-                      {image.file_url.match(/\.(mp4|webm|ogg)$/i) ? (
+                      {image.file_url.match(/\.(mp4|webm|ogg|mov|avi|mkv|m4v)$/i) ? (
                         <div className="relative w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center">
                           <Video className="w-8 h-8 text-gray-400" />
                         </div>
@@ -350,7 +350,7 @@ export default function ImageUpload() {
                         <X className="h-5 w-5" />
                       </button>
                     </div>
-                    {image.file_url.match(/\.(mp4|webm|ogg)$/i) && (
+                    {image.file_url.match(/\.(mp4|webm|ogg|mov|avi|mkv|m4v)$/i) && (
                       <div className="px-4 pb-4">
                         <video
                           src={image.file_url}
