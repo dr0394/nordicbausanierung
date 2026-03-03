@@ -323,31 +323,43 @@ export default function ImageUpload() {
             ) : (
               <div className="space-y-4 max-h-[600px] overflow-y-auto">
                 {images.map((image) => (
-                  <div key={image.id} className="flex items-start space-x-4 p-4 border border-gray-200 rounded-lg">
-                    {image.file_url.match(/\.(mp4|webm|ogg)$/i) ? (
-                      <div className="relative w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center">
-                        <Video className="w-8 h-8 text-gray-400" />
+                  <div key={image.id} className="border border-gray-200 rounded-lg overflow-hidden">
+                    <div className="flex items-start space-x-4 p-4">
+                      {image.file_url.match(/\.(mp4|webm|ogg)$/i) ? (
+                        <div className="relative w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center">
+                          <Video className="w-8 h-8 text-gray-400" />
+                        </div>
+                      ) : (
+                        <img
+                          src={image.file_url}
+                          alt={image.title}
+                          className="w-24 h-24 object-cover rounded-lg"
+                        />
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-lg font-semibold text-gray-900 truncate">{image.title}</h3>
+                        <p className="text-sm text-gray-600">{image.category}</p>
+                        <p className="text-xs text-gray-500 mt-1">
+                          {new Date(image.uploaded_at).toLocaleDateString('de-DE')}
+                        </p>
                       </div>
-                    ) : (
-                      <img
-                        src={image.file_url}
-                        alt={image.title}
-                        className="w-24 h-24 object-cover rounded-lg"
-                      />
-                    )}
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-semibold text-gray-900 truncate">{image.title}</h3>
-                      <p className="text-sm text-gray-600">{image.category}</p>
-                      <p className="text-xs text-gray-500 mt-1">
-                        {new Date(image.uploaded_at).toLocaleDateString('de-DE')}
-                      </p>
+                      <button
+                        onClick={() => handleDelete(image)}
+                        className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                      >
+                        <X className="h-5 w-5" />
+                      </button>
                     </div>
-                    <button
-                      onClick={() => handleDelete(image)}
-                      className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                    >
-                      <X className="h-5 w-5" />
-                    </button>
+                    {image.file_url.match(/\.(mp4|webm|ogg)$/i) && (
+                      <div className="px-4 pb-4">
+                        <video
+                          src={image.file_url}
+                          controls
+                          className="w-full rounded-lg"
+                          preload="metadata"
+                        />
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
