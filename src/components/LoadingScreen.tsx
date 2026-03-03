@@ -41,7 +41,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] bg-black flex items-center justify-center transition-opacity duration-600 ${
+      className={`fixed inset-0 z-[9999] bg-white flex items-center justify-center transition-opacity duration-600 ${
         fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
       style={{ transitionDuration: '600ms' }}
