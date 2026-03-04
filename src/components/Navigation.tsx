@@ -43,7 +43,7 @@ const Navigation = ({ onContactClick, onHomeClick }: NavigationProps) => {
       }`}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+        <div className="flex items-center justify-between h-20 sm:h-24">
           <div className="flex items-center">
             <a
               href="/"
@@ -60,7 +60,7 @@ const Navigation = ({ onContactClick, onHomeClick }: NavigationProps) => {
               <img
                 src="https://kvfgqhuyudwuqqypopgl.supabase.co/storage/v1/object/public/gallery-images/renovierung/1772639630205-j6ri29.png"
                 alt="Nordic Vision Logo"
-                className="h-10 sm:h-12 md:h-14 w-auto"
+                className="h-14 sm:h-16 md:h-20 w-auto"
               />
               <div className="hidden md:block">
 
