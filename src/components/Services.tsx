@@ -1,26 +1,26 @@
-import { Flame, Droplet, Building, Wrench } from 'lucide-react';
+import { Wrench, Leaf, Flame, Shovel } from 'lucide-react';
 
 const Services = ({ onContactClick }: { onContactClick: () => void }) => {
   const services = [
     {
-      icon: Flame,
-      title: 'Brandschäden',
-      description: 'Schnelle Schadensbeseitigung nach Brand mit professioneller Koordination aller notwendigen Gewerke',
-    },
-    {
-      icon: Droplet,
-      title: 'Wasserschäden',
-      description: 'Sofortige Reaktion bei Wasserschäden: Trocknung, Sanierung und Wiederherstellung Hand in Hand koordiniert',
-    },
-    {
-      icon: Building,
-      title: 'Kernsanierung',
-      description: 'Vollständige Gebäudesanierung mit nur einem Ansprechpartner für alle Gewerke und Abläufe',
-    },
-    {
       icon: Wrench,
-      title: 'Sanierungen',
-      description: 'Anspruchsvolle Sanierungsprojekte mit klaren Abläufen, verlässlichen Terminen und sauberen Ergebnissen',
+      title: 'Sanierung / Kernsanierung',
+      description: 'Vollständige Gebäudesanierung aus einer Hand – von der Planung bis zur schlüsselfertigen Übergabe mit nur einem Ansprechpartner für alle Gewerke.',
+    },
+    {
+      icon: Leaf,
+      title: 'Energetische Sanierung',
+      description: 'Nachhaltige Modernisierung Ihres Gebäudes: Dämmung, Fassade, Fenster und Heizsysteme für dauerhaft geringere Energiekosten und höheren Wohnkomfort.',
+    },
+    {
+      icon: Flame,
+      title: 'Brand- und Wasserschaden Sanierung',
+      description: 'Schnelle Schadensbeseitigung nach Brand oder Wasserschaden mit professioneller Trocknung, Reinigung und vollständiger Wiederherstellung.',
+    },
+    {
+      icon: Shovel,
+      title: 'Tiefbau',
+      description: 'Professionelle Tiefbauarbeiten: Erdarbeiten, Kanalisation, Fundamente und Außenanlagen – zuverlässig und termingerecht ausgeführt.',
     },
   ];
 
