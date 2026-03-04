@@ -21,7 +21,7 @@ const Footer = () => {
             <div>
               <div className="flex items-center space-x-3 mb-6">
                 <img
-                  src="https://i.imgur.com/LPgaXte.png"
+                  src="https://kvfgqhuyudwuqqypopgl.supabase.co/storage/v1/object/public/gallery-images/renovierung/1772639630205-j6ri29.png"
                   alt="Nordic Vision Logo"
                   className="h-16 w-auto"
                 />
