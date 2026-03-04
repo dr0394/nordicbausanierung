@@ -5,7 +5,7 @@ const Services = ({ onContactClick }: { onContactClick: () => void }) => {
     {
       icon: Wrench,
       title: 'Sanierung / Kernsanierung',
-      description: 'Vollständige Gebäudesanierung aus einer Hand – von der Planung bis zur schlüsselfertigen Übergabe mit nur einem Ansprechpartner für alle Gewerke.',
+      description: 'Vollständige Gebäudesanierung aus einer Hand von der Planung bis zur schlüsselfertigen Übergabe mit nur einem Ansprechpartner für alle Gewerke.',
     },
     {
       icon: Leaf,
