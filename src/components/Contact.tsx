@@ -92,7 +92,7 @@ const Contact = ({ onContactClick }: { onContactClick: () => void }) => {
             <h3 className="text-2xl font-normal text-white mb-6" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.6)' }}>Standort</h3>
             <div className="bg-[#34495e]/50 rounded-xl overflow-hidden h-96 border border-white/20">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2368.517!2d10.034!3d53.643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTPCsDM4JzM0LjgiTiAxMMKwMDInMDIuNCJF!5e0!3m2!1sde!2sde!4v1234567890!5m2!1sde!2sde&q=Waldweg+85,+22393+Hamburg"
+                src="https://maps.google.com/maps?q=Waldweg+85,+22393+Hamburg&output=embed&z=16"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
