@@ -34,10 +34,7 @@ const Hero = ({ onContactClick }: { onContactClick: () => void }) => {
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-8 sm:mb-10">
             <button
               onClick={onContactClick}
-              className="inline-block px-6 py-2.5 sm:px-8 sm:py-3 border border-white/60 text-white text-sm sm:text-base font-normal hover:bg-white/10 hover:border-white transition-all duration-300"
-              style={{
-                textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'
-              }}
+              className="relative inline-flex items-center gap-2 px-8 py-4 sm:px-10 sm:py-5 bg-[#d4af7a] text-[#1a2332] text-base sm:text-lg font-semibold tracking-wide uppercase hover:bg-[#e0c088] active:scale-95 transition-all duration-200 shadow-[0_0_0_3px_rgba(212,175,122,0.4),0_8px_24px_rgba(0,0,0,0.4)] hover:shadow-[0_0_0_4px_rgba(212,175,122,0.6),0_12px_32px_rgba(0,0,0,0.5)]"
             >
               Jetzt Anfragen
             </button>
