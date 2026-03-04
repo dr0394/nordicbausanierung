@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone, Upload } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 
 interface NavigationProps {
   onContactClick: () => void;
@@ -7,7 +7,7 @@ interface NavigationProps {
   onHomeClick?: () => void;
 }
 
-const Navigation = ({ onContactClick, onUploadClick, onHomeClick }: NavigationProps) => {
+const Navigation = ({ onContactClick, onHomeClick }: NavigationProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -85,15 +85,6 @@ const Navigation = ({ onContactClick, onUploadClick, onHomeClick }: NavigationPr
           </div>
 
           <div className="hidden lg:flex items-center space-x-4">
-            {onUploadClick && (
-              <button
-                onClick={onUploadClick}
-                className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-600 hover:text-[#d4af7a] transition-colors"
-              >
-                <Upload className="w-4 h-4" />
-                <span>Upload</span>
-              </button>
-            )}
             <button
               onClick={onContactClick}
               className="border border-gray-300 text-gray-900 px-6 py-2 text-sm hover:bg-gray-100 hover:border-[#d4af7a] transition-all duration-300"
@@ -135,18 +126,6 @@ const Navigation = ({ onContactClick, onUploadClick, onHomeClick }: NavigationPr
                 <Phone className="w-4 h-4" />
                 <span className="font-normal">+49 170 4371672</span>
               </a>
-              {onUploadClick && (
-                <button
-                  onClick={() => {
-                    onUploadClick();
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gray-100 rounded-lg text-gray-900 border border-gray-200"
-                >
-                  <Upload className="w-4 h-4" />
-                  <span>Upload</span>
-                </button>
-              )}
               <button
                 onClick={onContactClick}
                 className="w-full border border-gray-300 text-gray-900 px-6 py-3 text-sm hover:bg-gray-100 hover:border-[#d4af7a] transition-all duration-300"
