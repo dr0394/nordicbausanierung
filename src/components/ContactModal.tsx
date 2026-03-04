@@ -78,11 +78,10 @@ Nachricht: ${formData.message || 'Keine zusätzliche Nachricht'}
   };
 
   const serviceTypes = [
-    { value: 'brand-wasser', label: 'Brand & Wasserschaden' },
-    { value: 'schimmel', label: 'Schimmelsanierung' },
-    { value: 'kernsanierung', label: 'Kernsanierung' },
-    { value: 'fassade', label: 'Fassadensanierung' },
-    { value: 'bad', label: 'Badsanierung' },
+    { value: 'kernsanierung', label: 'Sanierung / Kernsanierung' },
+    { value: 'energetisch', label: 'Energetische Sanierung' },
+    { value: 'brand-wasser', label: 'Brand- und Wasserschaden Sanierung' },
+    { value: 'tiefbau', label: 'Tiefbau' },
     { value: 'sonstiges', label: 'Sonstiges' },
   ];
 
