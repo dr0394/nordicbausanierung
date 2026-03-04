@@ -92,7 +92,7 @@ const Contact = ({ onContactClick }: { onContactClick: () => void }) => {
             <h3 className="text-2xl font-normal text-white mb-6" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.6)' }}>Standort</h3>
             <div className="bg-[#34495e]/50 rounded-xl overflow-hidden h-96 border border-white/20">
               <iframe
-                src="https://maps.google.com/maps?q=Waldweg+85,+22393+Hamburg&output=embed&z=16"
+                src="https://maps.google.com/maps?q=Nordic+Vision+GmbH,+Waldweg+85,+22393+Hamburg&output=embed&z=16"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
