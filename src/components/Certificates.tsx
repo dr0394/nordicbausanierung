@@ -1,12 +1,7 @@
-import { Award, Shield, CheckCircle, Star } from 'lucide-react';
+import { Shield, CheckCircle, Star } from 'lucide-react';
 
 const Certificates = () => {
   const certificates = [
-    {
-      icon: Award,
-      title: "Meisterbetrieb",
-      description: "Zertifizierter Handwerksbetrieb mit Meisterbrief"
-    },
     {
       icon: Shield,
       title: "TÜV Zertifiziert",
