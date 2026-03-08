@@ -72,12 +72,15 @@ const Testimonials = () => {
             </div>
             <span className="text-3xl font-normal text-white" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.6)' }}>5,0</span>
           </div>
-          <p
-            className="text-lg text-white/90"
+          <a
+            href="https://share.google/TGZ7H201naJJwZTnB"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-lg text-white/90 hover:text-white underline underline-offset-4 transition-colors"
             style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.6)' }}
           >
-            Basierend auf über 150 Google-Bewertungen
-          </p>
+            Basierend auf Google-Bewertungen
+          </a>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
