@@ -121,7 +121,7 @@ const Testimonials = () => {
               Kostenloses Angebot anfordern
             </a>
             <a
-              href="https://www.google.com/search?q=bausanierung+bielefeld"
+              href="https://share.google/TGZ7H201naJJwZTnB"
               target="_blank"
               rel="noopener noreferrer"
               className="px-10 py-4 border border-white/60 text-white hover:bg-white/10 hover:border-white transition-all duration-300"
