@@ -57,7 +57,7 @@ const Team = () => {
                 <img
                   src={member.image}
                   alt={member.name}
-                  className={`w-full h-full object-cover ${member.name === 'Daniela Roth' ? 'object-[50%_20%]' : ''}`}
+                  className={`w-full h-full object-cover ${member.name === 'Daniela Roth' ? 'object-[50%_20%]' : member.name === 'Peter Klebba' ? 'object-[50%_15%]' : ''}`}
                 />
               </div>
               <div className="p-6">
