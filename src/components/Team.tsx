@@ -16,6 +16,13 @@ const Team = () => {
       qualifications: ['B. Ing. und Baukalkulator', 'Chief Operating Officer'],
       image: 'https://kvfgqhuyudwuqqypopgl.supabase.co/storage/v1/object/public/gallery-images/modernisierung/1772580228256-wsewd.jpeg',
     },
+    {
+      name: 'Peter Klebba',
+      role: 'Bauleiter Tiefbau',
+      description: 'Erfahrene Bauleitung im Bereich Tiefbau und Baustellenkoordination',
+      qualifications: ['Bauleiter Tiefbau', 'Langjährige Projekterfahrung'],
+      image: 'https://kvfgqhuyudwuqqypopgl.supabase.co/storage/v1/object/public/gallery-images/renovierung/1773850924514-6b99qe.jpeg',
+    },
   ];
 
   return (
@@ -40,7 +47,7 @@ const Team = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 max-w-6xl mx-auto">
           {teamMembers.map((member, index) => (
             <div
               key={index}
