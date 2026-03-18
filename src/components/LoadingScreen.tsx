@@ -14,11 +14,12 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
     const video = videoRef.current;
     if (!video) return;
 
-    const handleEnd = () => {
+    const finish = () => {
       setFadeOut(true);
       setTimeout(onComplete, 600);
     };
 
+    const handleEnd = () => finish();
     const handleError = () => {
       setFadeOut(true);
       setTimeout(onComplete, 300);
@@ -27,10 +28,14 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
     video.addEventListener('ended', handleEnd);
     video.addEventListener('error', handleError);
 
-    const timeout = setTimeout(() => {
-      setFadeOut(true);
-      setTimeout(onComplete, 600);
-    }, 6000);
+    const timeout = setTimeout(finish, 6000);
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        finish();
+      });
+    }
 
     return () => {
       video.removeEventListener('ended', handleEnd);
