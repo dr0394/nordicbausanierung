@@ -23,6 +23,14 @@ const Team = () => {
       qualifications: ['Bauleiter Tiefbau', 'Langjährige Projekterfahrung'],
       image: 'https://kvfgqhuyudwuqqypopgl.supabase.co/storage/v1/object/public/gallery-images/renovierung/1773850924514-6b99qe.jpeg',
     },
+    {
+      name: 'Michal Klebba',
+      role: 'Außendienst Mitarbeiter',
+      description: 'Kundenakquise und Betreuung im Außendienst',
+      qualifications: ['Außendienst Mitarbeiter', 'Akquise'],
+      image: 'https://kvfgqhuyudwuqqypopgl.supabase.co/storage/v1/object/public/gallery-images/renovierung/1774449523569-5wgjdn.jpeg',
+      objectPosition: 'object-[50%_10%]',
+    },
   ];
 
   return (
@@ -57,7 +65,7 @@ const Team = () => {
                 <img
                   src={member.image}
                   alt={member.name}
-                  className={`w-full h-full object-cover ${member.name === 'Daniela Roth' ? 'object-[50%_20%]' : member.name === 'Peter Klebba' ? 'object-[50%_15%]' : ''}`}
+                  className={`w-full h-full object-cover ${'objectPosition' in member ? member.objectPosition : member.name === 'Daniela Roth' ? 'object-[50%_20%]' : member.name === 'Peter Klebba' ? 'object-[50%_15%]' : ''}`}
                 />
               </div>
               <div className="p-6">
