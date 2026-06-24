@@ -7,10 +7,8 @@ import Services from './components/Services';
 import Advantages from './components/Advantages';
 import Process from './components/Process';
 import Portfolio from './components/Portfolio';
-import Testimonials from './components/Testimonials';
 import About from './components/About';
 import Team from './components/Team';
-import Certificates from './components/Certificates';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -92,13 +90,9 @@ function App() {
 
           <Portfolio />
 
-          <Testimonials />
-
           <About />
 
           <Team />
-
-          <Certificates />
 
           <FAQ />
 

@@ -59,18 +59,24 @@ const Impressum = ({ onBack }: ImpressumProps) => {
           </section>
 
           <section>
+            <h3 className="text-xl font-normal text-gray-900 mb-3">Betriebsnummer</h3>
+            <p className="text-gray-700 leading-relaxed">
+              71369032
+            </p>
+          </section>
+
+          <section>
             <h3 className="text-xl font-normal text-gray-900 mb-3">Umsatzsteuer-ID</h3>
             <p className="text-gray-700 leading-relaxed">
               Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br />
-              Folgt
+              DE460286141
             </p>
           </section>
 
           <section>
             <h3 className="text-xl font-normal text-gray-900 mb-3">Berufsrechtliche Regelungen</h3>
             <p className="text-gray-700 leading-relaxed">
-              Zuständige Kammer: [Handwerkskammer/IHK]<br />
-              Zuständige Aufsichtsbehörde: [Behörde]
+              Zuständige Kammer: IHK Hamburg
             </p>
           </section>
 
@@ -78,8 +84,7 @@ const Impressum = ({ onBack }: ImpressumProps) => {
             <h3 className="text-xl font-normal text-gray-900 mb-3">Versicherung</h3>
             <p className="text-gray-700 leading-relaxed">
               Betriebshaftpflichtversicherung<br />
-              [Name der Versicherung]<br />
-              [Adresse der Versicherung]<br />
+              Signal Iduna<br />
               Geltungsbereich: Deutschland
             </p>
           </section>
